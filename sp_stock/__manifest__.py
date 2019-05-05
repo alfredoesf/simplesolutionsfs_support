@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name': 'Account extend',
+    'name': 'SP Stock',
     'version': '12.0.1.0.0',
-    'summary': 'Account extend',
+    'summary': 'SP Stock',
     'sequence': 16,
     'description': """
     """,
-    'category': 'Invoicing Management',
+    'category': 'Warehouse',
     'website': '',
     'images': [],
-    'depends': ['account'],
+    'depends': ['stock'],
     'data': [
-        'views/account_invoice_view.xml',
+        'views/sp_stock_picking_view.xml',
     ],
     'demo': [],
     'installable': True,

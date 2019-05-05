@@ -3,7 +3,7 @@
     <data>
 
         <!-- Form -->
-        <record id="account_invoice_inherit_form" model="ir.ui.view">
+        <record id="sp_account_invoice_inherit_form" model="ir.ui.view">
             <field name="name">account.invoice.inherit.form</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
@@ -14,7 +14,7 @@
             </field>
         </record>
 
-        <record id="invoice_supplier_form_inherit_form" model="ir.ui.view">
+        <record id="sp_invoice_supplier_form_inherit_form" model="ir.ui.view">
             <field name="name">invoice.supplier.inherit.form</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
@@ -22,6 +22,20 @@
                 <field name="vendor_bill_id" position="after">
                     <field name="department_id"/>
                 </field>
+            </field>
+        </record>
+
+        <record id="sp_view_account_invoice_inherit_filter" model="ir.ui.view">
+            <field name="name">account.invoice.inherit.search</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="department_id"/>
+                </xpath>
+                <xpath expr="//search/group/filter[@name='status']" position="after">
+                    <filter string="Department" name="by_department_id" context="{'group_by':'department_id'}"/>
+                </xpath>
             </field>
         </record>
     </data>

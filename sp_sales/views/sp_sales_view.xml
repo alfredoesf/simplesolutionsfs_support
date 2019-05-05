@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- tree -->
+        <record id="sp_view_order_inherit_tree" model="ir.ui.view">
+            <field name="name">sp.sale.order.inherit.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="department_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="sp_view_quotation_inherit_tree" model="ir.ui.view">
+            <field name="name">sp.sale.order.quotation.inherit.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="department_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Form -->
+        <record id="sp_view_order_inherit_form" model="ir.ui.view">
+            <field name="name">sp.sale.order.inherit.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="department_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="sp_sale_order_view_inherit_filter" model="ir.ui.view">
+            <field name="name">sp.sale.order.inherit.search</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="department_id"/>
+                </xpath>
+                <xpath expr="//search/group/filter[@name='order_month']" position="after">
+                    <filter string="Department" name="by_department_id" context="{'group_by':'department_id'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
