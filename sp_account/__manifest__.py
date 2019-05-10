@@ -14,6 +14,7 @@
     'data': [
         'views/sp_account_invoice_view.xml',
         'views/sp_account_move_view.xml',
+        'views/sp_product_view.xml',
     ],
     'demo': [],
     'installable': True,
