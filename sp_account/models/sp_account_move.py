@@ -3,17 +3,19 @@
 from odoo import api, fields, models
 
 
-class SpAccountMove(models.Model):
-    _inherit = "account.move"
-
-    def _default_department(self):
-        employee_id = self.env['hr.employee'].search([('user_id', '=', self.env.user.id)], limit=1)
-        return employee_id and employee_id.department_id and employee_id.department_id.id or False
+class SpAccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     # Fields declaration
-    department_id = fields.Many2one('hr.department', string='Department', default=_default_department, readonly=True)
+    department_id = fields.Many2one('hr.department', string='Department', compute='_compute_department_id', store=True)
 
     # compute and search fields, in the same order that fields declaration
+    @api.multi
+    @api.depends('product_id')
+    def _compute_department_id(self):
+        for rec in self:
+            rec.department_id = rec.product_id and rec.product_id.categ_id.department_id and \
+                                rec.product_id.categ_id.department_id.id or False
 
     # constrains and onchange
 

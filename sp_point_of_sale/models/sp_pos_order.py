@@ -3,19 +3,19 @@
 from odoo import api, fields, models
 
 
-class SpPOsOrder(models.Model):
-    _inherit = "pos.order"
+class SpPOsOrderLine(models.Model):
+    _inherit = "pos.order.line"
 
     # Fields declaration
     department_id = fields.Many2one('hr.department', string='Department', compute='_compute_department_id', store=True)
 
     # compute and search fields, in the same order that fields declaration
     @api.multi
-    @api.depends('user_id')
+    @api.depends('product_id')
     def _compute_department_id(self):
         for rec in self:
-            employee_id = self.env['hr.employee'].search([('user_id', '=', self.env.user.id)], limit=1)
-            rec.department_id = employee_id and employee_id.department_id and employee_id.department_id.id or False
+            rec.department_id = rec.product_id and rec.product_id.categ_id.department_id and \
+                                rec.product_id.categ_id.department_id.id or False
 
     # constrains and onchange
 

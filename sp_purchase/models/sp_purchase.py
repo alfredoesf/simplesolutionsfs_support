@@ -3,8 +3,8 @@
 from odoo import api, fields, models
 
 
-class SpAccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+class SpPurchaseOrderLine(models.Model):
+    _inherit = "purchase.order.line"
 
     # Fields declaration
     department_id = fields.Many2one('hr.department', string='Department', compute='_compute_department_id', store=True)

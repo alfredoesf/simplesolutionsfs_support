@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name': 'SP Stock',
+    'name': 'SP Purchase',
     'version': '12.0.1.0.0',
-    'summary': 'SP Stock',
-    'sequence': 16,
+    'summary': 'SP Purchase',
+    'sequence': 61,
     'description': """
     """,
-    'category': 'Warehouse',
+    'category': 'Purchases',
     'website': '',
     'images': [],
-    'depends': ['stock'],
+    'depends': ['purchase'],
     'data': [
-        'views/sp_stock_picking_view.xml',
-        'views/sp_stock_product_view.xml',
+        'views/sp_purchase_view.xml',
     ],
     'demo': [],
     'installable': True,
