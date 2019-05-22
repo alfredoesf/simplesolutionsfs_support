@@ -16,11 +16,3 @@ class SpStockMove(models.Model):
         for rec in self:
             rec.department_id = rec.product_id and rec.product_id.categ_id.department_id and \
                                 rec.product_id.categ_id.department_id.id or False
-
-    # business methods
-    @api.multi
-    def _get_accounting_data_for_valuation(self):
-        journal_id, acc_src, acc_dest, acc_valuation = super(SpStockMove, self)._get_accounting_data_for_valuation()
-        if self.location_id.scrap_location and self.product_id.categ_id.scrap_account_id:
-            acc_dest = self.product_id.categ_id.scrap_account_id.id
-        return journal_id, acc_src, acc_dest, acc_valuation

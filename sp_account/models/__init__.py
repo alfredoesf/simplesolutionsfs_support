@@ -2,4 +2,3 @@
 
 from . import sp_account_invoice
 from . import sp_account_move
-from . import sp_product
